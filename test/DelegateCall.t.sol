@@ -31,8 +31,8 @@ contract DelegateCounter {
     function delegateAdd(Counter c, uint256 n) external {
         bytes memory callData = abi.encodeWithSignature("add(uint256)", n);
 
-        // Uncomment the following line to output the call data (run test with `forge test -vvv` to see log messages)
-        //console.log("Call data: ", VM.toString(callData));
+        // Run test with `forge test -vvv` to see the output of this log messages
+        console.log("Call data: ", VM.toString(callData));
 
         (bool ok,) = address(c).delegatecall(callData);
         if(!ok) revert("Delegate call failed");
