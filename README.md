@@ -40,5 +40,5 @@ contracts:
 ---
 
 **DISCLAIMER:** The files in this repository are toy examples only meant to
-illustrate how Foundry works. They are not to be used in real-world cases.
+illustrate how upgradeable contracts work. The code is not intended to be used in production.
 Runtime Verification will not be held accountable should you do otherwise.
