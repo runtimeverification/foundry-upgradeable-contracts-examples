@@ -60,7 +60,13 @@ contract FaultyProxyTest is Test {
         // (4) Now we treat the proxy as if it were the logic contract
         proxied.add(2);
 
-        // (5) Did it work? (Spoiler: no!)
+        // (5) Did it work? Spoiler: no!
+        //     The reason is that the previous call `proxied.add(2)` changed FaultyProxy.implementation
+        //     in such a way that it now contains the address of an empty account. Note that using
+        //     delegatecall on an empty account actually succeeds and is not what is causing the
+        //     revert. The real problem is that `proxied.get()` expects a uint256 to be returned,
+        //     but empty accounts do not return anything. Thus, trying and failing to decode the
+        //     return value is what actually causes this call to revert.
         console.log("counter =", proxied.get()); // Reverts!
     }
 }

@@ -102,7 +102,7 @@ contract ProxyTest is Test {
         proxied.add(2); // Works as expected
         assertEq(proxied.get(), 25);
 
-        vm.expectRevert();
+        vm.expectRevert("Calling logic contract failed");
         proxied.add(7); // Fails as expected
 
         // (5) Upgrade to a new logic contract
